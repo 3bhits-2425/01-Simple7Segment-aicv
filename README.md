@@ -32,7 +32,6 @@ Dieses Unity-Projekt implementiert eine **7-Segment-Anzeige**, die Zahlen von `0
 ## 📌 To-Do / Erweiterungen
 - Animierte Übergänge beim Wechseln der Zahlen.
 - Unterstützung für mehrere Ziffern.
-- Materialien oder Farben für aktivierte/inaktivierte Segmente.
 
 ## 📹Demonstration
 
