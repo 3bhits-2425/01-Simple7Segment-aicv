@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SevenSegmentDisplay : MonoBehaviour
 {
-    public GameObject top, rightTop, rightBottom, bottom, leftBottom, leftTop, middle;
+    [SerializeField] private GameObject top, rightTop, rightBottom, bottom, leftBottom, leftTop, middle;
 
     private GameObject[] segments;
     private int currentNumber = 0;
@@ -21,14 +21,14 @@ public class SevenSegmentDisplay : MonoBehaviour
         new int[] { 1, 1, 1, 1, 0, 1, 1 }   // 9
     };
 
-    void Start()
+    private void Start()
     {
         segments = new GameObject[] { top, rightTop, rightBottom, bottom, leftBottom, leftTop, middle };
         SetInitialRotation();
         UpdateDisplay();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -51,7 +51,7 @@ public class SevenSegmentDisplay : MonoBehaviour
         }
     }
 
-    void UpdateDisplay()
+    private void UpdateDisplay()
     {
         for (int i = 0; i < segments.Length; i++)
         {
@@ -62,15 +62,15 @@ public class SevenSegmentDisplay : MonoBehaviour
             }
             else
             {
-                // Inaktive Segmente drehen sich
-                segments[i].transform.localRotation = segments[i].name == "top" || segments[i].name == "middle" || segments[i].name == "bottom" ?
-                    Quaternion.Euler(0, -90, 0) :  // Waagrechte Balken drehen sich
-                    Quaternion.Euler(-90, 0, 90);  // Vertikale Balken drehen sich
+                // Inaktive Segmente drehen sich weg
+                segments[i].transform.localRotation = segments[i].name == "A" || segments[i].name == "G" || segments[i].name == "D" ?
+                    Quaternion.Euler(0, -90, 0) :  // Waagrechte Balken
+                    Quaternion.Euler(-90, 0, 90);  // Vertikale Balken
             }
         }
     }
 
-    void SetInitialRotation()
+    private void SetInitialRotation()
     {
         top.transform.localRotation = Quaternion.Euler(0, -90, 90);
         middle.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -86,14 +86,14 @@ public class SevenSegmentDisplay : MonoBehaviour
     {
         switch (segmentName)
         {
-            case "top":
-            case "middle":
-            case "bottom":
+            case "A":
+            case "G":
+            case "D":
                 return Quaternion.Euler(0, -90, 90);
-            case "rightTop":
-            case "rightBottom":
-            case "leftTop":
-            case "leftBottom":
+            case "B":
+            case "C":
+            case "F":
+            case "E":
                 return Quaternion.Euler(-90, 0, 0);
             default:
                 return Quaternion.identity;

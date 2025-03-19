@@ -21,7 +21,6 @@ public class SevenSegmentDisapear : MonoBehaviour
 
     void Start()
     {
-        // Automatisch alle Segmente als Child-Objekte einlesen
         segments = new Transform[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -35,6 +34,10 @@ public class SevenSegmentDisapear : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform. rotation = Quaternion.Euler(0, 180, 0);
+        }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             currentNumber = (currentNumber + 1) % 10;
